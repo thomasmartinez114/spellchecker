@@ -1,1 +1,1 @@
-[Add info about spellchecker page here]
+spellchecker using REST API
