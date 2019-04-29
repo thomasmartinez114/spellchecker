@@ -7,9 +7,9 @@ const port = 8080; // To grab default port, 5000 is for locally running ---> por
 // console.log(fruits);
 console.log(newWords);
 
-app.get('/', function(req, res){
+app.get('/check', function(req, res){
     const userName = req.query.name
-    res.send(`Hello ${userName}!`);
+    res.send(`The word ${userName} is spelled correctly!`);
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
