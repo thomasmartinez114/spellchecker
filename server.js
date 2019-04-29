@@ -1,5 +1,5 @@
 const express = require('express');
-const fruits = require('./data');
+// const fruits = require('./data');
 const newWords = require('./spellcheck');
 const app = express();
 const port = 8080; // To grab default port, 5000 is for locally running ---> port = process.env.PORT || 5000;
