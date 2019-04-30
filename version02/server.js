@@ -1,5 +1,6 @@
 const express = require('express');
 const users = require('./data.js');
+const getemail = require('./getemail.js');
 const app = express();
 
 console.log(users);
@@ -12,22 +13,14 @@ app.get("/getuser", (req, res) => {
 
 // get email of user by inserting their name
 
-// Function that'll get the information needed
-function getemail(name){
-  const user = users.filter(userObj=>{
-    return userObj.name === name
-  });
-  return user[0].email
-}
-
 // The email route
 app.get("/getemail", (req, res) => {
   const name = req.query.name;
-  const email = getemail(name);
+  const email = getemail(users, name);
   res.send(email);
 })
 
-// console.log("Email:", getemail("Jason"));
+console.log(users);
 
 // app.get(["route"], (request *input, response *output)
 app.get("/greet", (req, res) => {
