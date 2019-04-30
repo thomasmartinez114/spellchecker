@@ -3,7 +3,6 @@ const users = require('./data.js');
 const getemail = require('./getemail.js');
 const app = express();
 
-console.log(users);
 // get user by index
 app.get("/getuser", (req, res) => {
     const index = req.query.index;
@@ -12,15 +11,11 @@ app.get("/getuser", (req, res) => {
 })
 
 // get email of user by inserting their name
-
-// The email route
 app.get("/getemail", (req, res) => {
-  const name = req.query.name;
-  const email = getemail(users, name);
-  res.send(email);
+    const name = req.query.name;
+    const email = getemail(users, name);
+    res.send(email);
 })
-
-console.log(users);
 
 // app.get(["route"], (request *input, response *output)
 app.get("/greet", (req, res) => {
