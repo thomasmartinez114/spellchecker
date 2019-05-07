@@ -3,13 +3,19 @@ const app = express();
 const dictionary = require('./dictionary.js');
 const port = process.env.PORT || 8080;
 
+// Connecting mongoDB
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:2701/spellchecker', { useNewUrlParser: true });
+
+
 // static page
 app.use(express.static('public'));
 
 app.get('/api', (req, res) => {
     const word = req.query.word;
-    let isWord = `Congrats! Your entry: ${word} was found in the dictionary.`;
-    let notWord = `Sorry! Your entry: ${word} was not found in the dictionary.`;
+    let isWord = `<div id='correct'>Congrats! Your entry: ${word} was found in the dictionary.</div>`;
+    let notWord = `<div id='incorrect'>Sorry! Your entry: ${word} was not found in the dictionary.</div>`;
     if (dictionary.hasOwnProperty(word.toLowerCase()) === true){
         res.send(isWord);
     } else {
