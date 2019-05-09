@@ -3,6 +3,10 @@ const users = require('./data.js');
 const getemail = require('./getemail.js');
 const app = express();
 
+
+// webpage using static method - this will do for entire public folder
+app.use(express.static('public'));
+
 // get user by index
 app.get("/getuser", (req, res) => {
     const index = req.query.index;
@@ -13,8 +17,9 @@ app.get("/getuser", (req, res) => {
 // get email of user by inserting their name
 app.get("/getemail", (req, res) => {
     const name = req.query.name;
+    const phone = req.query.phone;
     const email = getemail(users, name);
-    res.send(email);
+    res.send(`Your email is: ${email} and your phone number is: ${phone}`);
 })
 
 // app.get(["route"], (request *input, response *output)
