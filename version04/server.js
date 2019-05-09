@@ -1,21 +1,10 @@
 const express = require('express');
 const app = express();
 // const dictionary = require('./dictionary.js');
-const Words = require('./api/wordModel.js');
+const Words = require('./api/wordModel'); //Schema
+const bodyParser = require('body-parser'); // to edit the content you PUT
 const port = process.env.PORT || 8080;
 
-<<<<<<< HEAD
-// Connecting mongoDB
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:2701/spellchecker');
-
-mongoose.connection.once('open', function(){
-    console.log('Connection has been made, now make fireworks...');
-}).on('error', function(error){
-    console.log('Connectino error:', error);
-});
-
-=======
 // mongoose
 const mongoose = require('mongoose');
 // connect to mongoDB
@@ -31,16 +20,15 @@ mongoose.connect('mongodb://localhost:27017/spellchecker', { useNewUrlParser: tr
 });
 
 app.use(bodyParser.json());
->>>>>>> beforeMongoose
 
 // static page
 app.use(express.static('public'));
 
 app.get('/api', (req, res) => {
-    const word = req.query.word;
+    let word = req.query.word;
     
     // mongoose
-    word = word.toLowerCase();
+    // word = word.toLowerCase();
     let isWord = `<div id='correct'>Congrats! Your entry: ${word} was found in the dictionary.</div>`;
     let notWord = `<div id='incorrect'>Sorry! Your entry: ${word} was not found in the dictionary.</div>`;
     Words.find({ word }).then(function(results, error){
