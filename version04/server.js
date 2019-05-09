@@ -5,8 +5,13 @@ const port = process.env.PORT || 8080;
 
 // Connecting mongoDB
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:2701/spellchecker', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:2701/spellchecker');
+
+mongoose.connection.once('open', function(){
+    console.log('Connection has been made, now make fireworks...');
+}).on('error', function(error){
+    console.log('Connectino error:', error);
+});
 
 
 // static page
