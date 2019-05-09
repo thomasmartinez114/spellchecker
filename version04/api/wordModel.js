@@ -9,5 +9,5 @@ var WordSchema = new Schema({
     }
 });
 
-const Words = mongoose.model('words, WordSchema');
+const Words = mongoose.model('words', WordSchema);
 module.exports = Words;
